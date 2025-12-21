@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習記録用アプリ</title>
+</head>
+<body>
+        <p>個人用のポートフォリオ</p>
+        <br>
+        <div class ="item">
+            <input id="todu-input" type="text" placeholder="やること" >
+            <button id="add-botton">追加</button>
+            <ul id="todo-list"></ul>
+        </div>
+        
+        <div>
+            <p>
+                <input type="text" name="c1" value="テキスト入力欄">
+            </p>
+        </div>
+        <!-- ページを読み込んだときに、画面に表示されるやつ（試作） -->
+        <!-- <script src="{{ url_for('static', filename='js/script.js')}}"></script> -->
+            <form method="post">
+    <label>開始時刻（0-23）</label>
+    <input type="number" name="start_hour" required>
+
+    <label>学習時間（分）</label>
+    <input type="number" name="study_minutes" required>
+
+    <label>気分（1-5）</label>
+    <input type="number" name="mood" min="1" max="5" required>
+
+    <button type="submit">保存</button>
+</form>
+
+</body>
+</html>

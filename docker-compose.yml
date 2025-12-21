@@ -1,0 +1,31 @@
+
+services:
+  web:
+    build: .
+    image: my-nginx-app:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - FLASK_ENV=development
+      - DB_HOST=db
+      - DB_NAME=todo_db
+      - DB_USER=postgres
+      - DB_PASSWORD=secret
+    restart: always
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=todo_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  db_data:
