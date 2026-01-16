@@ -4,6 +4,8 @@
 
 学習行動を記録し、将来的に機械学習で
 「どんな条件で学習が進むか」を分析するためのWebアプリです。
+今回は、AIと対話を行いながら、細かい仕様を決めずにコーディングを行うバイブコーディングを行っています。
+この手法をとった理由は、ウェブアプリ制作の流れを知り、どのような知識が用いられているのかを知りたいと思ったからです。
 
 ## 概要
 - Flask を用いた学習ログ入力Webアプリ
@@ -15,6 +17,7 @@
   - 学習開始時刻
   - 学習時間
   - 気分（1〜5）
+  - その時の天気（Open-Meteo APIを使用）
 - SQLite への保存
 - 学習ログ一覧表示
 
@@ -25,15 +28,22 @@
 - HTML
 
 ## ディレクトリ構成
-project/
+study_log_analysis/
 ├ run.py
 └ app/
     ├ init.py
     ├ routes.py
+    ├ analyze.py
     ├ study.db
+    ├ weather.py
+    ├ update_weather.py
+    ├ css/
+    ├ js/
+      └script.js
     └ templates/
-    ├ index.html
-    └ logs.html
+      ├ index.html
+      ├ logs.html
+      └ tamplate.html
 
 perl
 コードをコピーする
