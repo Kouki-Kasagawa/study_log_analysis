@@ -35,7 +35,10 @@ def index():
 def logs():
     conn = get_db()
     c = conn.cursor()
-    c.execute("SELECT date, start_hour, study_minutes, mood FROM study_log ORDER BY id DESC")
+    c.execute("" \
+    "SELECT date, start_hour, study_minutes, mood,weather,created_at" \
+    " FROM study_log " \
+    "ORDER BY id DESC")
     logs = c.fetchall()
     conn.close()
 
