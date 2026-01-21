@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from datetime import datetime
 from weather import get_weather_text
@@ -30,4 +31,6 @@ def update_weather(db_path):
     conn.close()
 
 if __name__ == "__main__": 
-    update_weather("app/study.db")
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(BASE_DIR, "study.db")
+    update_weather(file_path)
