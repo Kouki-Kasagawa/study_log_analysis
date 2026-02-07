@@ -1,7 +1,14 @@
 from flask import Blueprint, render_template,  request, redirect, current_app
 import sqlite3
+import subprocess
 from datetime import datetime
+import os
 main = Blueprint('main', __name__)
+
+# Flaskのファイルがあるディレクトリのパスを取得(よく理解していない)
+basedir = os.path.abspath(os.path.dirname(__file__))
+# analysis.py への絶対パスを作る
+analyze_path = os.path.join(basedir, "analysis.py")
 
 def get_db():
     return sqlite3.connect(current_app.config['DATABASE'])
@@ -43,6 +50,20 @@ def logs():
     conn.close()
 
     return render_template("logs.html", logs=logs)
+
+@main.route("/analysis")
+def analysis():
+    try:
+        result = subprocess.run(["python3", "app/analyze.py"], capture_output=True, text=True, check=True)
+        output = result.stdout
+        return render_template("analysis.html", output=output)
+    except subprocess.CalledProcessError as e:
+    # ここがポイント！ e.stderr に「なぜ失敗したか」の理由が入っています
+        print(f"Error details: {e.stderr}") 
+        return f"Analysis script failed: {e.stderr}", 500
+    # result = subprocess.run(["python3", "analyze.py"], capture_output=True, text=True, check=True)
+    # output = result.stdout
+    #return render_template("analysis.html",output = output)
 
 # @main.route('/templates')
 # def templates_page():
