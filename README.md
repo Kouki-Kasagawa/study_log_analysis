@@ -49,8 +49,7 @@ study_log_analysis/<br>
       ├ logs.html<br>
       └ tamplate.html<br>
 
-perl
-コードをコピーする
+
 
 ## 起動方法
 ```bash
