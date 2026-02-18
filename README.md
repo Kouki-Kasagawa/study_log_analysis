@@ -7,6 +7,10 @@
 今回は、AIと対話を行いながら、細かい仕様を決めずにコーディングを行うバイブコーディングを行っています。
 この手法をとった理由は、ウェブアプリ制作の流れを知り、どのような知識が用いられているのかを知りたいと思ったからです。
 
+## 開発記録
+本プロジェクトの開発プロセスや、学習した技術（Flask, Docker, SQLite等）の詳細は、以下のNotionページで公開しています。<br>
+[学習記録、試行錯誤はこちらから](https://www.notion.so/2c45d5e4275c8066a22cf18d7b4a2553?source=copy_link)
+
 ## 概要
 - Flask を用いた学習ログ入力Webアプリ
 - SQLite に学習データを保存
@@ -28,22 +32,22 @@
 - HTML
 
 ## ディレクトリ構成
-study_log_analysis/
-├ run.py
-└ app/
-    ├ init.py
-    ├ routes.py
-    ├ analyze.py
-    ├ study.db
-    ├ weather.py
-    ├ update_weather.py
-    ├ css/
-    ├ js/
-      └script.js
-    └ templates/
-      ├ index.html
-      ├ logs.html
-      └ tamplate.html
+study_log_analysis/<br>
+├ run.py<br>
+└ app/<br>
+    ├ init.py<br>
+    ├ routes.py<br>
+    ├ analyze.py<br>
+    ├ study.db<br>
+    ├ weather.py<br>
+    ├ update_weather.py<br>
+    ├ css/<br>
+    ├ js/<br>
+      └script.js<br>
+    └ templates/<br>
+      ├ index.html<br>
+      ├ logs.html<br>
+      └ tamplate.html<br>
 
 perl
 コードをコピーする
