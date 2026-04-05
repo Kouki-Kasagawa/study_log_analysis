@@ -50,6 +50,6 @@ perl
 
 ## 起動方法
 ```bash
-python run.py
+dockerを起動してから
 ブラウザで以下にアクセス
 http://localhost:8000
