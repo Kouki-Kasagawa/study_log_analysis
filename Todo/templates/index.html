@@ -6,7 +6,28 @@
     <title>TODoアプリ</title>
 </head>
 <body>
-        <h1>記録画面</h1>
-        <h2>ログ</h2>
+    <h1>記録画面</h1>
+    <h2>ログ</h2>
+    {% if study==[] %}
+        <p>ログがありません</p>
+    {% else %}
+        <table border="1">
+            <tr>
+                <th>記録時間</th>
+                <th>時間</th>
+                <th>達成度</th>
+            </tr>
+
+            {% for i in study %}
+            <tr>
+                <td>{{ i.how_long }}</td>
+                <td>{{ i.time }}</td>
+                <td>{{ i.status }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <a href="{{ url_for('logs') }}">ログの入力はこちら</a>
 </body>
 </html>

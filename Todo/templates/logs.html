@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログ画面</title>
+</head>
+<body>
+    <h1>入力画面です</h1>
+    <form method="post" action="{{ url_for('register') }}">
+        <table border="1">
+            <tr>
+                <th>時間</th>
+                <th>開始したとき</th>
+                <th>やる気</th>
+            </tr>
+            <tr>
+                <td><input type="number" name="how_long" value="0"></td>
+                <td><input type="datetime-local" name="time"></td>
+                <td>
+                    <select name="achievement" style="width: 100%;">
+                        <option value="1">1 (低)</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                        <option value="5">5 (高)</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="登録">
+    </form>
+
+
+</body>
+</html>
