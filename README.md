@@ -34,7 +34,7 @@
 - Flask
 - SQLite
 - HTML
-  `<td>`{{ stydy.how_long }}`</td>`
+
 
 ## ディレクトリ構成
 
