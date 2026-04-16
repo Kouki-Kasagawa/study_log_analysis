@@ -3,30 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODoアプリ</title>
+    <title>継続君</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>記録画面</h1>
-    <h2>ログ</h2>
-    {% if study==[] %}
-        <p>ログがありません</p>
-    {% else %}
-        <table border="1">
-            <tr>
-                <th>記録時間</th>
-                <th>時間</th>
-                <th>達成度</th>
-            </tr>
+    <!-- 上部 -->
+    <div>
+        <h2>今のやる気は{{ motivation }}%です！</h2>
+        <h2>今日は{{ suggest }}をやろう！</h2>
+    </div>
 
-            {% for i in study %}
-            <tr>
-                <td>{{ i.how_long }}</td>
-                <td>{{ i.time }}</td>
-                <td>{{ i.status }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% endif %}
+    <!-- 下部 -->
+
+    <div class="tab-container">
+
+        <!-- ラジオボタン -->
+        <input type="radio" id="tab1" name="TAB" checked>
+        <input type="radio" id="tab2" name="TAB">
+        <input type="radio" id="tab3" name="TAB">
+
+        <!-- ボタン -->
+        <div class="tab-buttons">
+            <label for="tab1">学習記録</label>
+            <label for="tab2">予定</label>
+            <label for="tab3">やること・Todo</label>
+        </div>
+
+        <!-- コンテンツ -->
+        <div class="tab-contents">
+
+            <div class="tab-content" id="content1">
+                <form method="post" action="{{ url_for('register_study') }}">
+                    <table border="1"> 
+                        <tr><th>時間</th>
+                            <th>開始したとき</th>
+                            <th>やる気</th>
+                        </tr> 
+                        <tr> 
+                            <td><input type="number" name="how_long" value="0" required></td>
+                            <td><input type="datetime-local" name="time" required></td> 
+                            <td> 
+                                <select name="status"> 
+                                    <option value="1">1</option>
+                                    <option value="2">2</option> 
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option> 
+                                    <option value="5">5</option> 
+                                </select> 
+                            </td> 
+                        </tr> 
+                    </table> 
+                    <input type="submit" value="学習を登録" class="submit-btn"> 
+                </form> 
+            </div>
+
+
+            <div class="tab-content" id="content2"> 
+                <form method="post" action="{{ url_for('register_schedule_and_task') }}"> 
+                    <input type="hidden" name="type" value="schedule"> 
+                    <table border="1"> 
+                        <tr>
+                            <th>予定</th>
+                            <th>日付</th>
+                            <th>カテゴリー</th>
+                        </tr> 
+                        <tr> 
+                            <td><input type="text" name="title" placeholder="予定を入力" required></td> 
+                            <td><input type="datetime-local" name="date"></td> 
+                            <td> 
+                                <select name="category" required> 
+                                    <option value="1">運動</option><option value="2">バイト</option> 
+                                    <option value="3">遊び</option><option value="4">その他</option> 
+                                </select> 
+                            </td> 
+                        </tr> 
+                        <tr>
+                            <th>メモ</th>
+                            <td colspan="2"><input type="text" name="memo"></td>
+                        </tr> 
+                    </table> <input type="submit" value="予定を登録" class="submit-btn"> 
+                </form> 
+            </div>
+
+            <div class="tab-content" id="content3"> 
+                <form method="post" action="{{ url_for('register_schedule_and_task') }}"> 
+                    <input type="hidden" name="type" value="task"> 
+                    <table border="1"> 
+                        <tr>
+                            <th>タスク</th>
+                            <th>締め切り</th>
+                        </tr> 
+                            <tr> 
+                                <td><input name="title" type="text" required></td> 
+                                <td><input name="date" type="date"></td> 
+                            </tr> 
+                            <tr>
+                                <th>メモ</th>
+                                <td><input type="text" name="memo"></td>
+                            </tr> 
+                        </table> <input type="submit" value="タスクを登録" class="submit-btn"> 
+                    </form> 
+                </div> 
+            </div> 
+        </div> 
+
+
+        <div style="margin-top: 40px;">
+        <h2>最近の頑張った記録</h2>
+        {% if study==[] %}
+            <p>ログがありません</p>
+        {% else %}
+            <table border="1">
+                <tr>
+                    <th>記録時間</th>
+                    <th>時間</th>
+                    <th>達成度</th>
+                </tr>
+
+                {% for i in study %}
+                <tr>
+                    <td>{{ i.how_long }}</td>
+                    <td>{{ i.time }}</td>
+                    <td>{{ i.status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
 
     <a href="{{ url_for('logs') }}">ログの入力はこちら</a>
 </body>

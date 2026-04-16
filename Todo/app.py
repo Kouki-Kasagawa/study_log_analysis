@@ -16,29 +16,49 @@ def index():
 
     return render_template(
         'index.html',
-        study = study
-    )
-
-@app.route("/logs")
-def logs():
-    return render_template(
-        "logs.html"
+        study = study,
+        motivation = '10',
+        suggest = "電車に乗った5分間だけ単語"
     )
 
 
-@app.route("/register", methods=["POST"])
-def register():
+
+@app.route("/register_study", methods=["POST"])
+def register_study():
     how_long = request.form["how_long"]
     time = request.form["time"]
     status = request.form["status"]
 
+
     con = sqlite3.connect(DATABASE)
-    con.execute('INSERT INTO study VALUE(?, ?, ?)',
+    con.execute('INSERT INTO study VALUES(?, ?, ?)',
                 [how_long, time, status])
     con.commit()
     con.close()
 
     return redirect(url_for('index'))
+
+@app.route("/register_schedule_and_task", methods=["POST"])
+def register_schedule_and_task():
+
+    record_type = request.form["type"]      # schedule or tasks
+    title = request.form["title"]
+    memo = request.form["memo"]
+    date = request.form["date"]
+    category = request.form["category"]
+
+
+    con = sqlite3.connect(DATABASE)
+    con.execute(
+        'INSERT INTO schedule(type, title, memo, date, category) VALUES (?, ?, ?, ?, ?)',
+        [record_type, title, memo, date, category]
+    )
+    con.commit()
+    con.close()
+
+    return redirect(url_for('index'))
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

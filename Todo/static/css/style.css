@@ -1,0 +1,79 @@
+/* タブ全体のコンテナ */
+.tab-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* ラジオボタン自体は隠す */
+input[name="TAB"] {
+    position: absolute;
+    opacity: 0;
+}
+
+/* ボタン（ラベル）の横並び設定 */
+.tab-buttons {
+    display: flex;
+    width: 100%;
+}
+
+.tab-buttons label {
+    flex: 1; /* 3つのボタンを均等に広げる */
+    background-color: #f0f0f0;
+    padding: 15px 0;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* 選択されているタブの見た目を変える */
+#tab1:checked ~ .tab-buttons label[for="tab1"],
+#tab2:checked ~ .tab-buttons label[for="tab2"],
+#tab3:checked ~ .tab-buttons label[for="tab3"] {
+    background-color: #808080; /* 画像のようなグレー */
+    color: white;
+}
+
+/* コンテンツの表示・非表示切り替え */
+.tab-content {
+    display: none; /* 初期状態はすべて隠す */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* ラジオボタンの状態に合わせてコンテンツを表示 */
+#tab1:checked ~ .tab-contents #content1,
+#tab2:checked ~ .tab-contents #content2,
+#tab3:checked ~ .tab-contents #content3 {
+    display: block;
+}
+
+/* テーブルや入力欄の微調整 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="datetime-local"],
+input[type="date"],
+select {
+    width: 95%;
+    padding: 8px;
+    font-size: 16px; /* スマホでズームされないサイズ */
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
