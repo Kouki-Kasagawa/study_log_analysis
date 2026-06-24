@@ -2,8 +2,8 @@
     margin: 0 auto;
     max-width: 1110px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    /* grid-template-columns: repeat(2, 1fr);
+    gap: 40px; */
 }
 @media (max-width: 767.98px) {
     .calendar-wrap {
@@ -55,4 +55,12 @@
 }
 .calendar .off {
     background-color: #fadcdb;
+}
+
+td:first-child{
+    color: red;
+}
+
+td:last-child{
+    color: blue;
 }

@@ -9,17 +9,18 @@ def index():
 
     con = sqlite3.connect(DATABASE)
     db_study = con.execute('SELECT * FROM study').fetchall()
+    con.close()
     study = []
 
     for row in db_study:
-        study.append({'how_long': row[0],'time': row[1],'status': row[2]})
+        study.append({'id': row[0],'how_long': row[1],'stydy_time': row[2],'status': row[3]})
 
     return render_template(
         'index.html',
         study = study,
         motivation = '10',
         suggest = "電車に乗った5分間だけ単語"
-    )
+    )    
 
 @app.route("/calendar")
 def calendar():
@@ -30,13 +31,15 @@ def calendar():
 @app.route("/register_study", methods=["POST"])
 def register_study():
     how_long = request.form["how_long"]
-    time = request.form["time"]
+    study_time = request.form["study_time"]
     status = request.form["status"]
 
 
     con = sqlite3.connect(DATABASE)
-    con.execute('INSERT INTO study VALUES(?, ?, ?)',
-                [how_long, time, status])
+    con.execute(
+        'INSERT INTO study (how_long, study_time, status) VALUES (?, ?, ?)',
+        (how_long, study_time, status)
+    )
     con.commit()
     con.close()
 
@@ -49,7 +52,7 @@ def register_schedule_and_task():
     title = request.form["title"]
     memo = request.form["memo"]
     date = request.form["date"]
-    category = request.form["category"]
+    category = request.form.get("category", "")
 
 
     con = sqlite3.connect(DATABASE)
@@ -62,7 +65,20 @@ def register_schedule_and_task():
 
     return redirect(url_for('index'))
 
+@app.route("/delete", methods=["POST"])
+def delete():
+    ids = request.form.getlist("delete_ids")
 
+    con = sqlite3.connect(DATABASE)
+    if ids:
+        con.execute(
+            f"DELETE FROM study WHERE id IN ({','.join(['?']*len(ids))})",
+            ids
+        )
+    con.commit()
+    con.close()
+
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)

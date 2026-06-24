@@ -43,8 +43,8 @@
                             <th>やる気</th>
                         </tr> 
                         <tr> 
-                            <td><input type="number" name="how_long" value="0" required></td>
-                            <td><input type="datetime-local" name="time" required></td> 
+                            <td><input type="number" name="how_long" value="0"  min="0" required></td>
+                            <td><input type="datetime-local" name="study_time" required></td> 
                             <td> 
                                 <select name="status"> 
                                     <option value="1">1</option>
@@ -110,29 +110,40 @@
             </div> 
         </div> 
 
+        
+    <form action="/delete" method="post">
+            <div style="margin-top: 40px;">
+            <h2>最近の頑張った記録</h2>
+            {% if study==[] %}
+                <p>ログがありません</p>
+            {% else %}
+                <table border="1">
+                    <tr>
+                        <th>記録時間</th>
+                        <th>時間</th>
+                        <th>やる気（満足度）</th>
+                        <th>選択</th>
+                    </tr>
 
-        <div style="margin-top: 40px;">
-        <h2>最近の頑張った記録</h2>
-        {% if study==[] %}
-            <p>ログがありません</p>
-        {% else %}
-            <table border="1">
-                <tr>
-                    <th>記録時間</th>
-                    <th>時間</th>
-                    <th>やる気（満足度）</th>
-                </tr>
+                    {% for i in study %}
+                    <tr>
+                        <td>{{ i.how_long }}</td>
+                        <td>{{ i.study_time }}</td>
+                        <td>{{ i.status }}</td>
+                        <td>
+                            <input type="checkbox" name="delete_ids" value="{{ i.id}}"></td>
+                    </tr>
+                    {% endfor %}
+                </table>
 
-                {% for i in study %}
-                <tr>
-                    <td>{{ i.how_long }}</td>
-                    <td>{{ i.time }}</td>
-                    <td>{{ i.status }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        {% endif %}
-    </div>
+                <button type="submit">選択したものを削除</button>
+            
+            {% endif %}
+        </div>
+    </form>
+
+
+
 
 
 </body>
