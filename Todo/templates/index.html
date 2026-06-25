@@ -47,11 +47,11 @@
                             <td><input type="datetime-local" name="study_time" required></td> 
                             <td> 
                                 <select name="status"> 
-                                    <option value="1">1</option>
-                                    <option value="2">2</option> 
-                                    <option value="3" selected>3</option>
-                                    <option value="4">4</option> 
-                                    <option value="5">5</option> 
+                                    <option value="1">🟥😫</option>
+                                    <option value="2">🟧☹️</option> 
+                                    <option value="3" selected>🟨😐</option>
+                                    <option value="4">🟩🙂</option> 
+                                    <option value="5">🟦😊</option> 
                                 </select> 
                             </td> 
                         </tr> 
@@ -98,7 +98,7 @@
                         </tr> 
                             <tr> 
                                 <td><input name="title" type="text" required></td> 
-                                <td><input name="date" type="date"></td> 
+                                <td><input type="datetime-local" name="date"></td> 
                             </tr> 
                             <tr>
                                 <th>メモ</th>
@@ -129,9 +129,22 @@
                     <tr>
                         <td>{{ i.how_long }}</td>
                         <td>{{ i.study_time }}</td>
-                        <td>{{ i.status }}</td>
                         <td>
-                            <input type="checkbox" name="delete_ids" value="{{ i.id}}"></td>
+                            {% if i.status | int == 1 %}
+                                🟥😫
+                            {% elif i.status | int == 2 %}
+                                🟧☹️
+                            {% elif i.status | int == 3 %}
+                                🟨😐
+                            {% elif i.status | int == 4 %}
+                                🟩🙂
+                            {% elif i.status | int == 5 %}
+                                🟦😊
+                            {% endif %}
+                        </td>
+                        <td>
+                            <input type="checkbox" name="delete_ids" value="{{ i.id}}">
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>

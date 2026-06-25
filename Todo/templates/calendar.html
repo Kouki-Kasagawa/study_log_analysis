@@ -8,6 +8,11 @@
 </head>
 <body>
     <div id="calendar" class="calendar-wrap"></div>
+
+    <script>
+        const schedules = {{ schedules | tojson }};
+    </script>
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

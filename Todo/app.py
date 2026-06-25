@@ -13,7 +13,7 @@ def index():
     study = []
 
     for row in db_study:
-        study.append({'id': row[0],'how_long': row[1],'stydy_time': row[2],'status': row[3]})
+        study.append({'id': row[0],'how_long': row[1],'study_time': row[2],'status': row[3]})
 
     return render_template(
         'index.html',
@@ -24,7 +24,19 @@ def index():
 
 @app.route("/calendar")
 def calendar():
-    return render_template("calendar.html")
+
+    con = sqlite3.connect(DATABASE)
+
+    schedules = con.execute(
+        "SELECT type,title,date FROM schedule"
+    ).fetchall()
+
+    con.close()
+
+    return render_template(
+        "calendar.html",
+        schedules=schedules
+    )
 
 
 

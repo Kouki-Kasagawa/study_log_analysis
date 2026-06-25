@@ -2,65 +2,137 @@
     margin: 0 auto;
     max-width: 1110px;
     display: grid;
-    /* grid-template-columns: repeat(2, 1fr);
-    gap: 40px; */
 }
+
 @media (max-width: 767.98px) {
     .calendar-wrap {
         display: flex;
         flex-direction: column;
     }
 }
+
 .calendar {
     width: 100%;
     border-collapse: collapse;
 }
+
+/* ===== 基本 ===== */
+
 .calendar th,
 .calendar td {
     border: 1px solid #000;
-    text-align: center;
     padding: 10px;
     font-size: 14px;
     font-weight: bold;
 }
+
 .calendar th {
+    text-align: center;
     padding: 6px 10px;
 }
 
-.calendar td {}
+/* ===== 日付セル ===== */
+
+.calendar td {
+    width: 150px;
+    height: 110px;
+    vertical-align: top;
+    text-align: left;
+}
+
 @media (max-width: 767.98px) {
     .calendar th,
     .calendar td {
         padding: 6px;
         font-size: 12px;
     }
+
     .calendar th {
         padding: 3px 6px;
     }
+
+    .calendar td {
+        height: 80px;
+    }
 }
+
+/* ===== 曜日 ===== */
 
 .calendar .sun {
     color: #e17f7e;
     background-color: #f8e4e2;
 }
+
 .calendar .sat {
     color: #7ab6f3;
     background-color: #e7f6fd;
 }
+
+/* ===== その他 ===== */
+
 .calendar .mute {
     color: #aaa;
 }
+
 .calendar .today {
-    background-color: #7d7d7d;
+    background-color: #e0e0e0;
 }
+
 .calendar .off {
     background-color: #fadcdb;
 }
 
-td:first-child{
+/* ===== 日付表示 ===== */
+
+.day-number {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* ===== 予定表示 ===== */
+
+.event {
+    font-size: 11px;
+    font-weight: normal;
+    padding: 2px 4px;
+    margin-bottom: 3px;
+    border-radius: 4px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* スケジュール */
+
+.schedule-event {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+}
+
+/* Todo */
+
+.todo-event {
+    background-color: #fde68a;
+    color: #92400e;
+}
+
+/* 学習記録 */
+
+.study-event {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+/* 日曜の日付 */
+
+td:first-child .day-number {
     color: red;
 }
 
-td:last-child{
+/* 土曜の日付 */
+
+td:last-child .day-number {
     color: blue;
 }
