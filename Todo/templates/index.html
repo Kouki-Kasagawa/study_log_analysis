@@ -37,81 +37,85 @@
 
             <div class="tab-content" id="content1">
                 <form method="post" action="{{ url_for('register_study') }}">
-                    <table border="1"> 
+                    <table border="1">
                         <tr><th>時間</th>
                             <th>開始したとき</th>
                             <th>やる気</th>
-                        </tr> 
-                        <tr> 
+                        </tr>
+                        <tr>
                             <td><input type="number" name="how_long" value="0"  min="0" required></td>
-                            <td><input type="datetime-local" name="study_time" required></td> 
-                            <td> 
-                                <select name="status"> 
+                            <td><input type="datetime-local" name="study_time" required></td>
+                            <td>
+                                <select name="status">
                                     <option value="1">🟥😫</option>
-                                    <option value="2">🟧☹️</option> 
+                                    <option value="2">🟧☹️</option>
                                     <option value="3" selected>🟨😐</option>
-                                    <option value="4">🟩🙂</option> 
-                                    <option value="5">🟦😊</option> 
-                                </select> 
-                            </td> 
-                        </tr> 
-                    </table> 
-                    <input type="submit" value="学習を登録" class="submit-btn"> 
-                </form> 
+                                    <option value="4">🟩🙂</option>
+                                    <option value="5">🟦😊</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="学習を登録" class="submit-btn">
+                </form>
             </div>
 
 
-            <div class="tab-content" id="content2"> 
-                <form method="post" action="{{ url_for('register_schedule_and_task') }}"> 
-                    <input type="hidden" name="type" value="schedule"> 
-                    <table border="1"> 
+            <div class="tab-content" id="content2">
+                <form method="post" action="{{ url_for('register_schedule_and_task') }}">
+                    <input type="hidden" name="type" value="schedule">
+                    <table border="1">
                         <tr>
                             <th>予定</th>
                             <th>日付</th>
                             <th>カテゴリー</th>
-                        </tr> 
-                        <tr> 
-                            <td><input type="text" name="title" placeholder="予定を入力" required></td> 
-                            <td><input type="datetime-local" name="date"></td> 
-                            <td> 
-                                <select name="category" required> 
-                                    <option value="1">運動</option><option value="2">バイト</option> 
-                                    <option value="3">遊び</option><option value="4">その他</option> 
-                                </select> 
-                            </td> 
-                        </tr> 
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="title" placeholder="予定を入力" required></td>
+                            <td><input type="datetime-local" name="date"></td>
+                            <td>
+                                <select name="category" required>
+                                    <option value="1">運動</option><option value="2">バイト</option>
+                                    <option value="3">遊び</option><option value="4">その他</option>
+                                </select>
+                            </td>
+                        </tr>
                         <tr>
                             <th>メモ</th>
                             <td colspan="2"><input type="text" name="memo"></td>
-                        </tr> 
-                    </table> <input type="submit" value="予定を登録" class="submit-btn"> 
-                </form> 
+                        </tr>
+                    </table> <input type="submit" value="予定を登録" class="submit-btn">
+                </form>
             </div>
 
-            <div class="tab-content" id="content3"> 
-                <form method="post" action="{{ url_for('register_schedule_and_task') }}"> 
-                    <input type="hidden" name="type" value="task"> 
-                    <table border="1"> 
+            <div class="tab-content" id="content3">
+                <form method="post" action="{{ url_for('register_schedule_and_task') }}">
+                    <input type="hidden" name="type" value="task">
+                    <table border="1">
                         <tr>
                             <th>タスク</th>
                             <th>締め切り</th>
-                        </tr> 
-                            <tr> 
-                                <td><input name="title" type="text" required></td> 
-                                <td><input type="datetime-local" name="date"></td> 
-                            </tr> 
+                        </tr>
+                            <tr>
+                                <td><input name="title" type="text" required></td>
+                                <td><input type="datetime-local" name="date"></td>
+                            </tr>
                             <tr>
                                 <th>メモ</th>
                                 <td><input type="text" name="memo"></td>
-                            </tr> 
-                        </table> <input type="submit" value="タスクを登録" class="submit-btn"> 
-                    </form> 
-                </div> 
-            </div> 
-        </div> 
+                            </tr>
+                        </table> <input type="submit" value="タスクを登録" class="submit-btn">
+                    </form>
+                </div>
+            </div>
 
-        
-    <form action="/delete" method="post">
+        <!-- カレンダー（予定・やること選択時に表示） -->
+        <div class="calendar-section">
+            <iframe src="{{ url_for('calendar') }}" width="100%" height="500" frameborder="0"></iframe>
+        </div>
+
+        <!-- 最近の頑張った記録（学習記録選択時のみ表示） -->
+        <form action="/delete" method="post" class="study-log">
             <div style="margin-top: 40px;">
             <h2>最近の頑張った記録</h2>
             {% if study==[] %}
@@ -150,11 +154,12 @@
                 </table>
 
                 <button type="submit">選択したものを削除</button>
-            
+
             {% endif %}
         </div>
     </form>
 
+    </div>
 
 
 

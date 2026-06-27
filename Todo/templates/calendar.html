@@ -11,8 +11,32 @@
 
     <script>
         const schedules = {{ schedules | tojson }};
+        const studyLogs = {{ study_logs | tojson }};
     </script>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <div id="day-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <button id="modal-close" class="modal-close-btn">×</button>
+            </div>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        function closeModal() {
+            document.getElementById("day-modal").classList.remove("active");
+        }
+        document.getElementById("modal-close").addEventListener("click", closeModal);
+        document.getElementById("day-modal").addEventListener("click", function(e) {
+            if (e.target === this) closeModal();
+        });
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") closeModal();
+        });
+    </script>
 </body>
 </html>

@@ -67,6 +67,23 @@ select {
     font-size: 16px; /* スマホでズームされないサイズ */
 }
 
+/* カレンダーは予定・やること選択時のみ表示 */
+.calendar-section {
+    display: none;
+    margin-top: 20px;
+}
+
+#tab2:checked ~ .calendar-section,
+#tab3:checked ~ .calendar-section {
+    display: block;
+}
+
+/* 最近の頑張った記録は予定・やること選択時に非表示 */
+#tab2:checked ~ .study-log,
+#tab3:checked ~ .study-log {
+    display: none;
+}
+
 .submit-btn {
     width: 100%;
     padding: 10px;

@@ -28,14 +28,19 @@ def calendar():
     con = sqlite3.connect(DATABASE)
 
     schedules = con.execute(
-        "SELECT type,title,date FROM schedule"
+        "SELECT type, title, date, memo FROM schedule"
+    ).fetchall()
+
+    study_logs = con.execute(
+        "SELECT study_time, status, how_long FROM study"
     ).fetchall()
 
     con.close()
 
     return render_template(
         "calendar.html",
-        schedules=schedules
+        schedules=schedules,
+        study_logs=study_logs
     )
 
 

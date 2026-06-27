@@ -125,14 +125,192 @@
     color: #166534;
 }
 
-/* 日曜の日付 */
+/* 日曜セル */
 
-td:first-child .day-number {
-    color: red;
+.calendar td.sun {
+    background-color: #f8e4e2;
 }
 
-/* 土曜の日付 */
+.calendar td.sun .day-number {
+    color: #e17f7e;
+}
 
-td:last-child .day-number {
-    color: blue;
+/* 土曜セル */
+
+.calendar td.sat {
+    background-color: #e7f6fd;
+}
+
+.calendar td.sat .day-number {
+    color: #7ab6f3;
+}
+
+/* ===== 月ナビゲーション ===== */
+
+.calendar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 12px;
+}
+
+.calendar-nav-title {
+    min-width: 140px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.calendar-nav-btn {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 14px;
+    font-size: 22px;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+.calendar-nav-btn:hover {
+    background-color: #f3f4f6;
+}
+
+/* クリックカーソル */
+
+.calendar td[data-day] {
+    cursor: pointer;
+}
+
+/* やる気カラー（日曜・土曜の色より優先） */
+
+.calendar td.motivation-1 { background-color: #fca5a5 !important; } /* 😫 低い */
+.calendar td.motivation-2 { background-color: #fdba74 !important; } /* ☹️ 少し低い */
+.calendar td.motivation-3 { background-color: #fde68a !important; } /* 😐 普通 */
+.calendar td.motivation-4 { background-color: #86efac !important; } /* 🙂 良い */
+.calendar td.motivation-5 { background-color: #93c5fd !important; } /* 😊 高い */
+
+/* ===== モーダル ===== */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 320px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.modal-close-btn:hover {
+    color: #111;
+}
+
+.modal-section {
+    margin-bottom: 16px;
+}
+
+.modal-section h3 {
+    margin: 0 0 8px 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.modal-item {
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.modal-item:last-child {
+    border-bottom: none;
+}
+
+.modal-item-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-type-badge {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.modal-type-badge.schedule {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+}
+
+.modal-type-badge.task {
+    background-color: #fde68a;
+    color: #92400e;
+}
+
+.modal-time {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.modal-item-title {
+    font-weight: bold;
+}
+
+.modal-memo {
+    margin-top: 4px;
+    padding-left: 4px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #6b7280;
+}
+
+.modal-empty {
+    text-align: center;
+    color: #9ca3af;
+    padding: 20px 0;
+    margin: 0;
 }
